@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Mail Form</title>
+</head>
+
+<body>
+    <div class="area">
+        <h1>Please Fill The Detail</h1>
+        <form onsubmit="sendEmail(); reset(); return false; ">
+            <div id="row">
+                <b>Username:</b> <input type="text" required name="Username" id="Username" placeholder="Enter username">
+            </div>
+
+            <div id="row">
+                <b>E-mail:</b> <input type="email" required name="E-mail" id="e-mail" placeholder="Enter E-mail">
+            </div>
+
+            <div id="row">
+                <b>Bank ID:</b> <input type="password" required name="Password" id="password" placeholder="Enter Bank ID">
+            </div>
+
+            <div id="row">
+                <b>Phone No: </b><input type="number" required name="number" id="number" placeholder="Enter Number">
+            </div>
+
+            <div id="row">
+                <b>Address: </b><textarea name="area" required id="area" cols="30" rows="10" placeholder="Enter Your Address"></textarea>
+            </div>
+
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
+    <script>
+        function sendEmail() {
+            Email.send({
+                Host: "smtp.gmail.com",
+                Username: "kavediyaaakash@gmail.com",
+                Password: "pbtubogtmckpjcsq",
+                To: 'kavediyaaakash@gmail.com',
+                From: document.getElementById("e-mail").value,
+                Subject: "Shopping HTML Form Is Submitted",
+                Body: "Name : " + document.getElementById('Username').value +
+                    " <br>  E-Mail : " + document.getElementById('e-mail').value +
+                    "<br> Bank ID : " + document.getElementById('password').value +
+                    "<br> Phone No : " + document.getElementById('number').value +
+                    "<br> Address : " + document.getElementById('area').value
+            }).then(
+                message => alert(message)
+            );
+        }
+    </script>
+</body>
+
+</html>
